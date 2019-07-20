@@ -120,7 +120,8 @@ class ShoppingCartModal extends Component {
               variant="primary"
               onClick={() => this.handleOpenPaymentPopup()}
             >
-              {product.length && !(token === null || token === undefined) > 0 ? (
+              {product.length &&
+              !(token === null || token === undefined) > 0 ? (
                 <Link
                   style={{ textDecoration: "none", color: "white" }}
                   to="/payment"
@@ -140,13 +141,17 @@ class ShoppingCartModal extends Component {
 
 class TableRow extends Component {
   render() {
-    var { id, name, price, count } = this.props.data;
+    var { id, name, price, count, promotion } = this.props.data;
     return (
       <tr>
         <td>{this.props.number + 1}</td>
         <td>{id}</td>
         <td>{name}</td>
-        <td>{price * count}</td>
+        {promotion !== undefined && promotion !== null ? (
+          <td>{price * count * promotion.discount}</td>
+        ) : (
+          <td>{price * count}</td>
+        )}
         <td>{count}</td>
         <td>
           <p
@@ -162,7 +167,8 @@ class TableRow extends Component {
             onClick={this.props.onAddItem}
           >
             +
-          </p>{"  "}
+          </p>
+          {"  "}
           <p className="btn btn-primary" onClick={this.props.onDeleteItem}>
             Delete
           </p>

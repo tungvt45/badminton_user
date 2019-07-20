@@ -86,8 +86,8 @@ class ProductList extends Component {
   getAllPromotionProduct() {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
-    fetch(
-      "http://localhost:8080/products/allPromotionProduct?page=" +
+    fetch(API_URL +
+      "/products/allPromotionProduct?page=" +
         pageParam +
         "&element=" +
         pageSizeParam,
@@ -120,8 +120,8 @@ class ProductList extends Component {
   getAllBestSalesProduct() {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
-    fetch(
-      "http://localhost:8080/products/allBestSalesProduct?page=" +
+    fetch(API_URL +
+      "/products/allBestSalesProduct?page=" +
         pageParam +
         "&element=" +
         pageSizeParam,
@@ -154,8 +154,8 @@ class ProductList extends Component {
   getAllProduct() {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
-    fetch(
-      "http://localhost:8080/products/?page=" +
+    fetch(API_URL +
+      "/products/?page=" +
         pageParam +
         "&element=" +
         pageSizeParam,

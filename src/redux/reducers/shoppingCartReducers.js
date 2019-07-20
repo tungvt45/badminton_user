@@ -11,9 +11,6 @@ export const ShoppingCartReducers = (state = STATE, action) => {
   switch (action.type) {
     case ADD_QUANTITY_ITEM_SHOPPING:
       var listProduct = state.product;
-      if (action.product.promotion !== undefined && action.product.promotion !== null) {
-        action.product.price = action.product.price * action.product.promotion.discount
-      }
       const item = listProduct.find(
         product => product.id === action.product.id
       );

@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import PaginationComponent from "../Pagination/Pagination";
 import TopBar from "../TopBar/TopBar";
 import { Link } from "react-router-dom";
-import {API_URL} from "../../constants/config";
-import {URL} from "../../constants/config";
+import { API_URL } from "../../constants/config";
+import { URL } from "../../constants/config";
 class Payment extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +49,7 @@ class Payment extends Component {
       alert("You must login to continue");
       return;
     }
-    if ( product.length == 0) {
+    if (product.length == 0) {
       alert("You must choose something to checkout");
       return;
     }
@@ -82,7 +82,11 @@ class Payment extends Component {
     ));
     let total = 0;
     for (let i = 0; i < product.length; i++) {
-      total += product[i].price * product[i].count;
+      if (product.promotion !== null & product.promotion !== undefined) {
+        total += product[i].price * product[i].count * product[i].promotion.discount;  
+      } else {
+        total += product[i].price * product[i].count;
+      }
     }
     const { account } = this.state;
     return (
@@ -120,7 +124,12 @@ class Payment extends Component {
             <Button
               variant="primary"
               onClick={() => this.payment()}
-              style={{ float: "right", marginBottom: 10, width: 100, height: 70 }}
+              style={{
+                float: "right",
+                marginBottom: 10,
+                width: 100,
+                height: 70
+              }}
             >
               <Link style={{ textDecoration: "none", color: "white" }} to="/">
                 Check Out
@@ -135,13 +144,17 @@ class Payment extends Component {
 
 class TableRow extends Component {
   render() {
-    var { id, name, price, count } = this.props.data;
+    var { id, name, price, count, promotion } = this.props.data;
     return (
       <tr>
         <td>{this.props.number + 1}</td>
         <td>{id}</td>
         <td>{name}</td>
-        <td>{price * count}</td>
+        {promotion !== undefined && promotion !== null ? (
+          <td>{price * count * promotion.discount}</td>
+        ) : (
+          <td>{price * count}</td>
+        )}
         <td>{count}</td>
       </tr>
     );
