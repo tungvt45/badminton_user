@@ -6,7 +6,7 @@ import axios from "axios";
 import { Row, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {API_URL} from "../../constants/config";
+import { API_URL } from "../../constants/config";
 
 import {
   MDBCarousel,
@@ -95,7 +95,7 @@ class ProductLine extends Component {
               <MDBCardImage
                 className="img-fluid"
                 src={product[0].image[0].url}
-                style={{width: "100%", height: 300}}
+                style={{ width: "100%", height: 300 }}
               />
               <MDBCardBody>
                 <MDBCardTitle>{product[0].name}</MDBCardTitle>
@@ -120,7 +120,9 @@ class ProductLine extends Component {
                     </span>
                   </div>
                 ) : (
-                  <p className="card-text">{product[0].price} VND</p>
+                  <div>
+                    <span className="card-text">{product.price} VND</span>
+                  </div>
                 )}
                 <MDBBtn color="primary">
                   <Link
@@ -146,7 +148,7 @@ class ProductLine extends Component {
               <MDBCardImage
                 className="img-fluid"
                 src={product[1].image[0].url}
-                style={{width: "100%", height: 300}}
+                style={{ width: "100%", height: 300 }}
               />
               <MDBCardBody>
                 <MDBCardTitle>{product[1].name}</MDBCardTitle>
@@ -171,7 +173,7 @@ class ProductLine extends Component {
                     </span>
                   </div>
                 ) : (
-                  <p className="card-text">{product[1].price} VND</p>
+                  <span className="card-text">{product.price} VND</span>
                 )}
                 <MDBBtn color="primary">
                   <Link
@@ -197,7 +199,7 @@ class ProductLine extends Component {
               <MDBCardImage
                 className="img-fluid"
                 src={product[2].image[0].url}
-                style={{width: "100%", height: 300}}
+                style={{ width: "100%", height: 300 }}
               />
               <MDBCardBody>
                 <MDBCardTitle>{product[2].name}</MDBCardTitle>
@@ -222,7 +224,7 @@ class ProductLine extends Component {
                     </span>
                   </div>
                 ) : (
-                  <p className="card-text">{product[2].price} VND</p>
+                  <span className="card-text">{product.price} VND</span>
                 )}
                 <MDBBtn color="primary">
                   <Link

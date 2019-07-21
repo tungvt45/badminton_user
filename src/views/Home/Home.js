@@ -123,7 +123,7 @@ class Home extends Component {
         />
         <div className="card-body">
           <h5 className="card-title">{product.name}</h5>
-          <p className="card-text">{product.price} VND</p>
+          <span className="card-text">{product.price} VND</span>
           {/* <button onClick={() => this.goToDetail(product.id)} className="btn btn-primary">View detail</button>{' '} */}
           <a href="#" className="btn btn-primary">
             Add to Cart

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PaginationComponent from "../Pagination/Pagination";
 import TopBar from "../TopBar/TopBar";
 import { Link } from "react-router-dom";
-import {API_URL} from "../../constants/config";
+import { API_URL } from "../../constants/config";
 import {
   Card,
   CardImg,
@@ -54,8 +54,9 @@ class SearchProduct extends Component {
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
     let searchValueParam = encodeURIComponent(this.state.keyword);
     console.log(this.state.keyword);
-    fetch(API_URL +
-      "/products/getProductByName?page=" +
+    fetch(
+      API_URL +
+        "/products/getProductByName?page=" +
         pageParam +
         "&element=" +
         pageSizeParam +
@@ -80,6 +81,10 @@ class SearchProduct extends Component {
     });
   }
 
+  getLinkDetail(id) {
+    return "/detail/" + id;
+  }
+
   async componentWillMount() {
     await this.setState({
       keyword: this.props.match.params.keyword
@@ -90,10 +95,10 @@ class SearchProduct extends Component {
   render() {
     const { products } = this.state;
     const listProduct = products.map(product => (
-      <div className="card product col-md-3 ml-1 mr-1 mb-1 mt-1">
+      <div className="card product col-md-3 ml-1 mr-1 mb-1">
         <Row>
           <img
-            className="mt-3 card-img-top"
+            className="card-img-top"
             src={product.image[0].url}
             alt="Card image cap"
           />
@@ -117,10 +122,15 @@ class SearchProduct extends Component {
                 </span>
               </div>
             ) : (
-              <p className="card-text">{product.price} VND</p>
+              <div><span className="card-text">{product.price} VND</span></div>
             )}
-            <Button onClick={() => this.goToDetail(product.id)} color="primary">
-              View detail
+            <Button color="primary">
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to={this.getLinkDetail(product.id)}
+              >
+                View Detail
+              </Link>
             </Button>{" "}
             <Button
               onClick={() => {

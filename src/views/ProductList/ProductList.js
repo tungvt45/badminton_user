@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import PaginationComponent from "../Pagination/Pagination";
 import TopBar from "../TopBar/TopBar";
 import { Link } from "react-router-dom";
-import {API_URL} from "../../constants/config";
+import { API_URL } from "../../constants/config";
+import { URL } from "../../constants/config";
 
 class ProductList extends Component {
   constructor(props) {
@@ -40,8 +41,9 @@ class ProductList extends Component {
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
     let searchValueParam = encodeURIComponent(this.state.keyword);
     console.log(this.state.keyword);
-    fetch(API_URL + 
-      "/products/getProductByName?page=" +
+    fetch(
+      API_URL +
+        "/products/getProductByName?page=" +
         pageParam +
         "&element=" +
         pageSizeParam +
@@ -86,8 +88,9 @@ class ProductList extends Component {
   getAllPromotionProduct() {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
-    fetch(API_URL +
-      "/products/allPromotionProduct?page=" +
+    fetch(
+      API_URL +
+        "/products/allPromotionProduct?page=" +
         pageParam +
         "&element=" +
         pageSizeParam,
@@ -120,8 +123,9 @@ class ProductList extends Component {
   getAllBestSalesProduct() {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
-    fetch(API_URL +
-      "/products/allBestSalesProduct?page=" +
+    fetch(
+      API_URL +
+        "/products/allBestSalesProduct?page=" +
         pageParam +
         "&element=" +
         pageSizeParam,
@@ -154,11 +158,8 @@ class ProductList extends Component {
   getAllProduct() {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
-    fetch(API_URL +
-      "/products/?page=" +
-        pageParam +
-        "&element=" +
-        pageSizeParam,
+    fetch(
+      API_URL + "/products/?page=" + pageParam + "&element=" + pageSizeParam,
       {
         method: "GET",
         headers: {
@@ -201,7 +202,7 @@ class ProductList extends Component {
   // }
 
   getDataFromAPI() {
-    console.log("title", this.props.product.title)
+    console.log("title", this.props.product.title);
     if (this.props.product.title === "Promotion") {
       this.getAllPromotionProduct();
     } else if (this.props.product.title === "Best Sales") {
@@ -230,7 +231,7 @@ class ProductList extends Component {
               className="card-img-top"
               src={product.image[0].url}
               alt="Card image cap"
-              style={{width: "100%", height: 300}}
+              style={{ width: "100%", height: 300 }}
             />
           </Row>
           <Row>
@@ -282,7 +283,7 @@ class ProductList extends Component {
               className="card-img-top"
               src={product.image[0].url}
               alt="Card image cap"
-              style={{width: "100%", height: 300}}
+              style={{ width: "100%", height: 300 }}
             />
           </Row>
           <Row>
@@ -304,7 +305,7 @@ class ProductList extends Component {
                   </span>
                 </div>
               ) : (
-                <p className="card-text">{product.price} VND</p>
+                <span className="card-text">{product.price} VND</span>
               )}
               <Button color="primary">
                 <Link
@@ -334,7 +335,7 @@ class ProductList extends Component {
               className="card-img-top"
               src={product.image[0].url}
               alt="Card image cap"
-              style={{width: "100%", height: 300}}
+              style={{ width: "100%", height: 300 }}
             />
           </Row>
           <Row>
@@ -356,13 +357,17 @@ class ProductList extends Component {
                   </span>
                 </div>
               ) : (
-                <p className="card-text">{product.price} VND</p>
+                <div>
+                  <span className="card-text">{product.price} VND</span>
+                </div>
               )}
-              <Button
-                onClick={() => this.goToDetail(product.id)}
-                color="primary"
-              >
-                View detail
+              <Button color="primary">
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={this.getLinkDetail(product.id)}
+                >
+                  View Detail
+                </Link>
               </Button>{" "}
               <Button
                 onClick={() => {

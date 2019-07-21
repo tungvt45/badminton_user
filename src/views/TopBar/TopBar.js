@@ -10,6 +10,7 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { API_URL } from "../../constants/config";
+import { URL } from "../../constants/config";
 
 class TopBar extends Component {
   constructor(props) {
@@ -40,8 +41,9 @@ class TopBar extends Component {
     let pageParam = encodeURIComponent(this.state.currentPage);
     let pageSizeParam = encodeURIComponent(this.state.pageSize);
     let searchValueParam = encodeURIComponent(this.state.keyword);
-    fetch(API_URL + 
-      "/products/getProductByName?page=" +
+    fetch(
+      API_URL +
+        "/products/getProductByName?page=" +
         pageParam +
         "&element=" +
         pageSizeParam +
@@ -79,8 +81,9 @@ class TopBar extends Component {
   }
 
   goToSearch() {
-    window.location =
-      "http://localhost:3000/searchproduct/" + this.state.keyword;
+    // window.location =
+    //   "http://localhost:3000/searchproduct/" + this.state.keyword;
+    return "/searchproduct/" + this.state.keyword;
   }
 
   render() {
@@ -91,10 +94,7 @@ class TopBar extends Component {
         <div className="row w-100">
           {/* <!-- icon or logo --> */}
           <div className="col-md-auto">
-            <Link
-              style={{ textDecoration: "none", color: "white"}}
-              to="/"
-            >
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
               <h5>Badminton Shop Online</h5>
             </Link>
           </div>
@@ -113,12 +113,13 @@ class TopBar extends Component {
                 onChange={this.changeKeyword}
               />
               <div className="input-group-append">
-                <button
-                  className="btn btn-primary"
-                  onClick={() => this.goToSearch()}
-                >
-                  <i className="fa fa-search" />
-                </button>
+                <Link style={{ textDecoration: "none", color: "white" }} to={this.goToSearch()}>
+                  <button
+                    className="btn btn-primary"
+                  >
+                    <i className="fa fa-search" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -141,11 +142,10 @@ class TopBar extends Component {
             )}
           </div>
           <div className="col-md-auto">
-          {token === null || token === undefined ? (
+            {token === null || token === undefined ? (
               <RegisterModal />
             ) : (
-              <div>
-              </div>
+              <div />
             )}
           </div>
         </div>
