@@ -18,7 +18,7 @@ class ProductList extends Component {
       allProduct: [],
       products: [],
       maxPage: 0,
-      pageSize: 20,
+      pageSize: 12,
       currentPage: 1
     };
     this.getAllPromotionProduct = this.getAllPromotionProduct.bind(this);

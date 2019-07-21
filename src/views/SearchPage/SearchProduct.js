@@ -23,7 +23,7 @@ class SearchProduct extends Component {
     this.state = {
       products: [],
       maxPage: 0,
-      pageSize: 5,
+      pageSize: 12,
       currentPage: 1,
       keyword: ""
     };
